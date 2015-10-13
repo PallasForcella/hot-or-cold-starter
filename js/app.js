@@ -9,6 +9,7 @@ $(document).ready(function(){
 
     var UserNumber;
     var SecretNumber = 0;
+    var StartGame = false;
     
     function CreateSecretNumber() {
         SecretNumber = (Math.floor(Math.random()*100));
@@ -16,8 +17,11 @@ $(document).ready(function(){
     }
 
   	function NewGame(){
-	CreateSecretNumber();
-	UserNumber = 0;
+	$("a.new").click(function(){
+  		StartGame=true;
+		CreateSecretNumber();
+		UserNumber = 0;
+	});
   	}
 
 	function EnterNumber(){
@@ -41,11 +45,11 @@ $(document).ready(function(){
 	if (UserNumber === SecretNumber){
 		alert("You have won!");
 		}
-	else if (UserNumber <=(SecretNumber-30) || UserNumber>=(SecretNumber+30))
+	else if (UserNumber <(SecretNumber-30) || UserNumber>(SecretNumber+30))
 		{
 			alert("very cold");
 		}
-	else (UserNumber <=(SecretNumber-20) || UserNumber>=(SecretNumber+20))
+	else (UserNumber <(SecretNumber-20) || UserNumber>(SecretNumber+20))
 		{
 			alert("cold");
 		}
