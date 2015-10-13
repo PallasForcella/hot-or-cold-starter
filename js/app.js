@@ -17,13 +17,14 @@ $(document).ready(function(){
 
   	function NewGame(){
 	CreateSecretNumber();
-
+	UserNumber = 0;
   	}
 
 	function EnterNumber(){
-		$("a.new").click(function(){
+		$(".button").click(function(){
 		UserNumber = parseInt(UserNumber, 10);
 	CheckValid();
+	});
 	}
 
 	function CheckValid(){
@@ -36,22 +37,19 @@ $(document).ready(function(){
 	}
 
 	// check number against secret number
-	if UserNumber === SecretNumber{
+	function CheckNumber (){
+	if (UserNumber === SecretNumber){
 		alert("You have won!");
-	}
-	else{
-		UserNumber < (SecretNumber-30) || UserNumber>(SecretNumber+30){
-			alert(very cold)
 		}
-	else if{
-		UserNumber < (SecretNumber-20) || UserNumber>(SecretNumber+20){
-			alert(cold)
+	else if (UserNumber <=(SecretNumber-30) || UserNumber>=(SecretNumber+30))
+		{
+			alert("very cold");
 		}
-	else if{
-		UserNumber < (SecretNumber-10) || UserNumber>(SecretNumber+10){
-			alert(warm)
+	else (UserNumber <=(SecretNumber-20) || UserNumber>=(SecretNumber+20))
+		{
+			alert("cold");
 		}
-	}
+	};
 
   	/*--- Hide information modal box ---*/
   	$("a.close").click(function(){
