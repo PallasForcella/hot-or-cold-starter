@@ -27,6 +27,7 @@ $(document).ready(function(){
     var userNumber = null;
     var secretNumber = 0;
     var isStarted = false;
+    var newNumber = secretNumber - userNumber;
     
     function createSecretNumber() {
         secretNumber = (Math.floor(Math.random()*100));
@@ -40,6 +41,7 @@ $(document).ready(function(){
 		count=0;
 		$("ul#guessList").empty();
 		$("#count").empty();
+		$("#feedback").empty();
   	}
 
 	function checkValid(){
@@ -61,24 +63,29 @@ $(document).ready(function(){
 	if (userNumber === secretNumber){
 		document.getElementById("feedback").innerHTML = "You have won!";
 		}
-	else if (userNumber <=(secretNumber-5) || userNumber>=(secretNumber+5))
+	else if ((newNumber <= 10) && (newNumber >=1) )	
 		{
 			document.getElementById("feedback").innerHTML = "VERY warm";
 		}
-	else if (userNumber <=(secretNumber-10) || userNumber>=(secretNumber+10))
+	// else if (userNumber >=(secretNumber-5) || userNumber<=(secretNumber+5))
+	// 	{
+	// 		document.getElementById("feedback").innerHTML = "VERY warm";
+	// 	}
+	else if (userNumber >=(secretNumber-10) || userNumber<=(secretNumber+10))
 		{
 			document.getElementById("feedback").innerHTML = "warm";
 		}
-
-	else if (userNumber <=(secretNumber-20) || userNumber>=(secretNumber+20))
+	else if (userNumber >=(secretNumber-20) || userNumber<=(secretNumber+20))
 		{
 			document.getElementById("feedback").innerHTML = "cold";
 		}
-
-	else (userNumber <=(secretNumber-30) || userNumber>=(secretNumber+30))
+	else if (userNumber >=(secretNumber-30) || userNumber<=(secretNumber+30))
 		{
 			document.getElementById("feedback").innerHTML = "very cold";
 		}
+	else {
+		alert("something is messed up");
+	}		
 	};
 
   	/*--- Hide information modal box ---*/
