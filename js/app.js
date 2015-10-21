@@ -4,7 +4,6 @@ $(document).ready(function(){
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
-
   	});
 
 //start a new game
@@ -22,6 +21,7 @@ $(document).ready(function(){
     	var number = count.innerHTML;
     	number++;
     	count.innerHTML = number;
+    	checkNumber();
 	});
 
     var userNumber = null;
@@ -45,28 +45,39 @@ $(document).ready(function(){
 	function checkValid(){
 	//checks if it's NaN
 		if ( isNaN(userNumber)){
-			alert("Please enter a valid number");
+			document.getElementById("feedback").innerHTML = "Please enter a valid number";
 			console.log(userNumber);
-		}
+			}
 	//check if between 1 and 100	
-		else if (userNumber>100){
-			alert("Please enter a number between 1 and 100");
 
+//how do i keep it from appending the li?	
+		else if (userNumber>100){
+			document.getElementById("feedback").innerHTML = "Please enter a number between 1 and 100";
+			}
 		}
-	}
 
 	// check number against secret number
 	function checkNumber (){
 	if (userNumber === secretNumber){
-		alert("You have won!");
+		document.getElementById("feedback").innerHTML = "You have won!";
 		}
-	else if (userNumber <(secretNumber-30) || userNumber>(secretNumber+30))
+	else if (userNumber <=(secretNumber-5) || userNumber>=(secretNumber+5))
 		{
-			alert("very cold");
+			document.getElementById("feedback").innerHTML = "VERY warm";
 		}
-	else (userNumber <(secretNumber-20) || userNumber>(secretNumber+20))
+	else if (userNumber <=(secretNumber-10) || userNumber>=(secretNumber+10))
 		{
-			alert("cold");
+			document.getElementById("feedback").innerHTML = "warm";
+		}
+
+	else if (userNumber <=(secretNumber-20) || userNumber>=(secretNumber+20))
+		{
+			document.getElementById("feedback").innerHTML = "cold";
+		}
+
+	else (userNumber <=(secretNumber-30) || userNumber>=(secretNumber+30))
+		{
+			document.getElementById("feedback").innerHTML = "very cold";
 		}
 	};
 
