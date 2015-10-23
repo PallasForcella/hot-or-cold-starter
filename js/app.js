@@ -42,6 +42,7 @@ $(document).ready(function(){
 		$("ul#guessList").empty();
 		$("#count").empty();
 		$("#feedback").empty();
+		document.getElementById("feedback").innerHTML = "Make a guess!";
   	}
 
 	function checkValid(){
@@ -63,7 +64,7 @@ $(document).ready(function(){
 	if (userNumber === secretNumber){
 		document.getElementById("feedback").innerHTML = "You have won!";
 		}
-	else if ((newNumber <= 10) && (newNumber >=1) )	
+	else if ((secretNumber - userNumber) < 5)	
 		{
 			document.getElementById("feedback").innerHTML = "VERY warm";
 		}
