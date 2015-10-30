@@ -68,6 +68,7 @@ function checkValid(userNumber){
 	function checkNumber (){
 		var diff = Math.abs(userNumber - secretNumber);
 	if (diff === 0){
+		document.getElementById("feedback").innerHTML = "YOU WON!";
 		}
 	else if (diff < 5)	
 		{
