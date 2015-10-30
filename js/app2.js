@@ -2,12 +2,12 @@
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
-  	$(".what").click(function(){
-    	$(".overlay").fadeIn(1000);
-  	});
+	$(".what").click(function(){
+		$(".overlay").fadeIn(1000);
+	});
 
 //start a new game
-  	$("a.new").click(newGame);
+	$("a.new").click(newGame);
 
 
 	$(".user-input").submit(function(event){
@@ -27,16 +27,16 @@ $(document).ready(function(){
 		}
 	});
 
-    var userNumber = null;
-    var secretNumber = 0;
-    var isStarted = false;
-    
-    function createSecretNumber() {
-        secretNumber = (Math.floor(Math.random()*100));
-        console.log("Secret number = " + secretNumber);
-    }
+	var userNumber = null;
+	var secretNumber = 0;
+	var isStarted = false;
+	
+	function createSecretNumber() {
+		secretNumber = (Math.floor(Math.random()*100));
+		console.log("Secret number = " + secretNumber);
+	}
 
-  	function newGame(){
+	function newGame(){
 		isStarted=true;
 		createSecretNumber();
 		userNumber = null;
@@ -45,25 +45,49 @@ $(document).ready(function(){
 		$("#count").empty();
 		$("#feedback").empty();
 		document.getElementById("feedback").innerHTML = "Make a guess!";
-  	}
+	}
 
-function checkValid(userNumber){
+	function checkValid(userNumber){
 		//checks if it's NaN
 		if ( isNaN(userNumber)){
 			document.getElementById("feedback").innerHTML = "Please enter a valid number";
 			console.log(userNumber);
-			$(".user-input")[0].reset();
 			return false;
 		}
 	//check if between 1 and 100	
 
+		//how do i keep it from appending the li?	
 		else if (userNumber>100){
 			document.getElementById("feedback").textContent = "Please enter a number between 1 and 100";
 			return false;
 		}
 		return true;
 	}
-// var diff = Math.abs(userNumber - secretNumber)
+
+var giveFeedback = (function() {
+	var $feedback = $('#feedback');
+
+	return function() {
+		$('#feedback').text(text);
+	};
+})();
+
+// js style guide
+
+// anonymous function expression:
+// (function() {})
+
+function asdf() {
+
+}
+
+
+// var $feedback = $("#feedback");
+// function giveFeedback(text) {
+// 	$feedback.html(text);
+// 	// document.querySelector('#feedback').innerHTML = text;
+// }
+
 	// check number against secret number
 	function checkNumber (){
 		var diff = Math.abs(userNumber - secretNumber);
@@ -71,33 +95,33 @@ function checkValid(userNumber){
 		}
 	else if (diff < 5)	
 		{
-			document.getElementById("feedback").innerHTML = "VERY warm";
+			giveFeedback("VERY warm");
 		}
-	else if (diff < 20)	
-		{		
+	// else if (userNumber >=(secretNumber-5) || userNumber<=(secretNumber+5))
+	// 	{
+	// 		document.getElementById("feedback").innerHTML = "VERY warm";
+	// 	}
+	else if (diff < 10)
+		{
 			document.getElementById("feedback").innerHTML = "warm";
 		}
-	else if (diff < 40)	
-		{		
-			document.getElementById("feedback").innerHTML = "luke warm";
-		}
-	else if (diff < 60)	
-		{		
+	else if (userNumber >=(secretNumber-20) || userNumber<=(secretNumber+20))
+		{
 			document.getElementById("feedback").innerHTML = "cold";
 		}
-	else if (diff < 80)	
-		{		
-			document.getElementById("feedback").innerHTML = "freezing";
+	else if (userNumber >=(secretNumber-30) || userNumber<=(secretNumber+30))
+		{
+			document.getElementById("feedback").innerHTML = "very cold";
 		}
-	else {		
-			document.getElementById("feedback").innerHTML = "frozen";
-		}
+	else {
+		alert("something is messed up");
+	}		
 	};
 
-  	/*--- Hide information modal box ---*/
-  	$("a.close").click(function(){
-  		$(".overlay").fadeOut(1000);
-  	});
+	/*--- Hide information modal box ---*/
+	$("a.close").click(function(){
+		$(".overlay").fadeOut(1000);
+	});
 
 });
 
